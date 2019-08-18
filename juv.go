@@ -54,12 +54,12 @@ type fieldToken struct {
 }
 
 func main() {
-	log.SetFlags(0)
+	//log.SetFlags(0)
 
-	outFilename := flag.String("o", "juv_gen.go", "")
-	packName := flag.String("p", "current directory", "")
-	flag.StringVar(outFilename, "output", "juv_gen.go", "")
-	flag.StringVar(packName, "package", "current directory", "")
+	outFilename := flag.String("o", "juv_gen.go", "-o is output file name")
+	packName := flag.String("p", "current directory", "-p is package name")
+	flag.StringVar(outFilename, "output", "juv_gen.go", "-output is output file name")
+	flag.StringVar(packName, "package", "current directory", "-package is package name")
 	flag.Parse()
 
 	if *packName == "current directory" {
@@ -272,7 +272,6 @@ func generate(outFile, pkg string, tokens []structToken) error {
 		return err
 	}
 	defer out.Close()
-
 
 	fnMap := template.FuncMap{"title": strings.Title}
 	scansTmpl, err := template.New("juv").Funcs(fnMap).Parse(scansText)
