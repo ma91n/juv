@@ -39,8 +39,9 @@ import (
 	{{range .Fields}}r.{{.Name}} = a.{{.Name}}
 	{{end}}
 	
-	return nil{{end}}
+	return nil
 }
+{{end}}
 `
 
 type structToken struct {

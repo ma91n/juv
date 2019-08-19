@@ -7,8 +7,8 @@ import (
 )
 
 func (r *Post) UnmarshalJSON(b []byte) error {
-	type alias Post // avoid stack over flow error
-	var a alias
+	type Alias Post // avoid stack over flow error
+	var a Alias
 	if err := json.Unmarshal(b, &a); err != nil {
 		return err
 	}
@@ -19,9 +19,25 @@ func (r *Post) UnmarshalJSON(b []byte) error {
 
 	r.ID = a.ID
 	r.Created = a.Created
-	r.Draft = a.Draft
 	r.Title = a.Title
 	r.Body = a.Body
+	r.Draft = a.Draft
+
+	return nil
+}
+func (r *Login) UnmarshalJSON(b []byte) error {
+	type Alias Login // avoid stack over flow error
+	var a Alias
+	if err := json.Unmarshal(b, &a); err != nil {
+		return err
+	}
+
+	if err := validator.New().Struct(a); err != nil {
+		return err
+	}
+
+	r.ID = a.ID
+	r.Pass = a.Pass
 
 	return nil
 }

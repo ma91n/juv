@@ -1,5 +1,5 @@
 # juv
-juv is JSON Validator in Unmarshall phase. juv is using [go-validator](https://github.com/go-playground/validator).
+juv is a code generator for using [go-validator](https://github.com/go-playground/validator) in JSON Unmarshall.
 
 ## Installation
 
